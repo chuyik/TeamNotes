@@ -1,4 +1,6 @@
-# TeamNotes
+=======
+TeamNotes
+=========
 
 It's used for sharing knowledge with team members.
 You can post notes using markdown, and add some comments as well.
@@ -17,3 +19,4 @@ Rails version: 4.1
 
 ##Test##
   Sorry, test is not integrated.
+  
