@@ -1,0 +1,1 @@
+log("comments create js")

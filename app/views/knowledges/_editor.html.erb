@@ -1,0 +1,23 @@
+<div id="<%= knowledge.new_record? ? 'new_editor' : 'edit_editor' %>" class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">
+			<% if knowledge.new_record? %>
+				新增知识
+			<% else %>
+			<%= knowledge.title || "---" %> <small class="pull-right"><%= normalize_time(knowledge.updated_at) %></small>
+			<% end %>
+		</h2>
+	</div>
+	<div class="panel-body">
+		<div id="notes-edit" class="<%= 'hidden' unless knowledge.new_record? %> bottom">
+			<div id="notes-button-bar"></div>
+			<textarea id="notes" name="copy" class="form-control" placeholder="支持Markdown格式编辑"><%= knowledge.content %></textarea>
+		</div>
+		<div id="preview_text" class="<%= 'hidden' unless knowledge.new_record? %>">预览：</div>
+		<div class="panel panel-default">
+			<div id="notes-preview" class="panel-body">
+				<%= knowledge.content %>
+			</div>
+		</div>
+	</div>
+</div>

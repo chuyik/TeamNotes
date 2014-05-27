@@ -1,0 +1,30 @@
+<% if knowledge.new_record? %>
+	<ul>
+	  <% knowledge.errors.full_messages.each do |msg| %>
+	  	<li id="comment_error" class='text-danger'><%= msg %></li>
+	  <% end %>
+  </ul>
+	
+	<%= form_for(knowledge) do |f| %>
+		<div class="input-group bottom">
+		  <span class="input-group-addon"><%= f.label :author %></span>
+			<%= f.text_field :author, class: "form-control" %>
+		</div>
+		<div class="input-group bottom">
+		  <span class="input-group-addon"><%= f.label :title %></span>
+			<%= f.text_field :title, class: "form-control" %>
+		</div>
+		<div class="input-group bottom">
+		  <%= f.text_area :content, class:"hidden" %>
+		</div>
+		<div class="center">
+	    <%= f.submit id:"create_knowledge_btn", class:"btn btn-success", value:"确认新增" %>
+	    <input type="button" value="返回" onclick="javascript:window.history.back();" class="btn btn-danger left"/>
+	  </div>
+	<% end %>
+<% else %>
+	<%= form_for(knowledge, remote:true) do |f| %>
+		<%= f.text_area :content, class:"hidden" %>
+		<%= f.submit id:"update_knowledge_btn", class:"btn btn-success hidden", remote:true, value:"确认修改" %>
+	<% end if knowledge != nil %>
+<% end %>

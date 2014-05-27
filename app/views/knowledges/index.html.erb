@@ -1,0 +1,29 @@
+<div id="knowledges" data-equal=".kl-box">
+	<div id="kl-list" class="kl-box col-xs-4 col-md-4 col-lg-3 col-xs-height">
+		<div class="panel panel-default">
+			<div class="panel-heading">知识列表<span class="pull-right badge"><%=@knowledges.size %></span></div>
+			<div class="list-group">
+				<% @knowledges.each_with_index do |knowledge, i| %>
+					<%= link_to knowledge_path(knowledge), remote:true, class:"knowledge list-group-item #{'active' if i==0}" do %>
+						<span><%= knowledge.title %></span>
+						<small class="text-warning">(<%= knowledge.author.blank? ? '匿名' : knowledge.author %>)</small>
+						<small class="pull-right"><%= knowledge.created_at.localtime.strftime("%m-%d") %></small>
+					<% end %>
+				<% end %>
+
+				<% if @knowledges.size == 0 %>
+					<span class="list-group-item center">无新日志</span>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	
+	<div id="content_text" class="col-xs-8 col-md-8 col-lg-9 kl-box">
+		
+	  <% if yield.blank? %>
+	  	<span class="g-hand-left glyphicon glyphicon-hand-left"></span>
+	  <% else %>
+	  	<%= yield %>
+	  <% end %>
+	</div>
+</div>

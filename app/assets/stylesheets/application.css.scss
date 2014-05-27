@@ -1,0 +1,116 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require 'wmd/wmd'
+ *= require_self
+ *= require_tree .
+ */
+@import "bootstrap";
+@import "compass/css3/border-radius";
+
+/* reset css */
+
+a:link {color: #000; text-decoration: none; } 
+a:visited {color: #000; text-decoration: none; }
+a:hover {color: #000; text-decoration: none; } 
+a:active {color: #000; text-decoration: none; }
+
+a, button, input{transition: all 0.3s ease-in-out}
+
+// html, body, #wrap, #main{
+//   height: 100%;
+// }
+
+/* common css */
+
+.center {
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.top {margin-top: 10px; }
+.bottom {margin-bottom: 10px; }
+.right {margin-right: 10px; }
+.left {margin-left: 10px; }
+
+.buttons{
+  form{
+    display: inline;
+  }
+  .button_to div{
+    display: inline;
+  }
+}
+
+.field_with_errors{
+  @extend .has-error;
+}
+
+.nav a:hover{
+  color: #FFF !important;
+  background-color: #A7CC8E !important;
+}
+
+/* .fix_outer_div{
+  overflow:hidden;
+} */
+
+
+/* message css */
+
+.flash {
+  margin: 60px auto 20px;
+}
+
+
+/* goto buttons */
+.goto {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  display: none;
+  background-color: #999999;
+  cursor: pointer;
+  z-index: 1;
+  @include border-radius(8px);
+
+  span {
+    display: block;
+    width: 30px;
+    color: #dddddd;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 4px;
+
+    &:hover {
+      color: #cccccc;
+    }
+  }
+}
+#gotop, #gobottom{
+  right: 3%;
+  @media screen and (max-width: 480px) {
+    right: 1%;
+  }
+}
+#gotop{
+  bottom:80px;
+}
+#gobottom{
+  bottom:45px;  
+}

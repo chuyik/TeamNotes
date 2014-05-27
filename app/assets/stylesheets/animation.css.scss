@@ -1,0 +1,161 @@
+@import "compass/css3/transform";
+@import "compass/css3/opacity";
+@import "compass/css3/text-shadow";
+@import "compass-mixin";
+
+/* index hand animation */
+body{overflow:hidden;}
+
+.g-hand-left{
+  font-size: 130px;
+  margin-left: 30px;
+  color: #428BCA;
+  position: relative;
+  @include animation(rotate_down 3s 5s 1);
+}
+
+.main_animate{
+  @include animation(main 5s 1 ease-in-out);
+}  
+
+.logo_animate{
+  position:absolute;
+  top: -5%;
+  left: -40%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: block;
+
+  @include animation(
+    brand_movement 3s 1s 1 cubic-bezier(.63,.14,.38,.91),
+    fadeIn 1s 1s 1 forwards, 
+    font_ainimate 3s 1s 1 ease-in-out forwards
+  );
+}
+
+.navbar-collapse_animate{
+  position:relative;
+  @include animation(fadeIn 4s 3s 1, hide 4s 1);
+}
+
+.navbar_animate{
+  @include animation(hide 4s 1);
+}
+
+.copyright_animate { 
+  font: 100% Consolas, Monaco, monospace;
+  border-right: .1em solid;
+  width: 7.8em;
+  width: 13ch;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #999;
+  transition: all 0.5s ease-in-out;
+
+  @include animation(
+    typing 10s 7s steps(13, end),
+    blink-caret .5s 7s step-end infinite alternate
+  );
+
+  &:hover{
+    // -webkit-animation-play-state: paused;
+    color: #1F70BB;
+    @include text-shadow(1px 1px 10px rgba(116, 116, 116, 0.18));
+  }
+}
+
+/* animation definition */
+
+@include keyframes (typing) { from { width: 0; } }
+@include keyframes (blink-caret) { 50% { border-color: transparent; } }
+
+@include keyframes(main){
+  from {
+      margin-top:70%;
+      width:1000px;
+      overflow: hidden;
+      @include opacity(0);
+  }
+  50% {
+    margin-top:70%;
+  }
+  80% {
+    margin-top:70%;
+    @include opacity(0);
+  }
+  to {
+    margin-top:0%;
+    @include opacity(1);
+  }
+}
+
+@include keyframes(rotate_down){
+  0%    {transform: rotate(0deg);top:0px;}
+  20%   {transform: rotate(20deg);top:0px;}
+  40%   {transform: rotate(0deg);top:150px;}
+  70%   {transform: rotate(0deg);top:150px;}
+  100%  {transform: rotate(-360deg);top:0px;}
+}
+
+@include keyframes(hide){
+   0% {top: -100px;}
+   99% {top: -100px;}
+  // 95% {top: 50px;}
+}
+
+@include keyframes(fadeIn){
+  0% {@include opacity(0);} 50% {@include opacity(0);} 100% {@include opacity(1);}
+}
+
+@include keyframes(brand_movement){
+  0%     {/*-webkit-transform: scale(1.3); */ top:5%; left:0%; padding: 20%;}
+  50%    {/*-webkit-transform: scale(1); */   top:0%; left:0%; padding: 20%;}
+  90%    {/*-webkit-transform: scale(1); */   top:0%; left:0%; padding: 20%;} 
+  100%   {} 
+}
+
+@include keyframes(font_ainimate){
+  0%     {/*-webkit-transform: scale(1.3); */ font-size: 500%; @include text-shadow(1px 1px 3px #333)}
+  90%    {/*-webkit-transform: scale(1); */   font-size: 500%; @include text-shadow(1px 1px 3px #333)} 
+  100%   {}
+}
+
+// width: 100%;
+// height: 100%;
+// color: rgba(0, 0, 0, 0);
+// z-index: -1;
+// position: absolute;
+// font-size: 100%;
+// text-align: center;
+// vertical-align: middle;
+// font-size: 50px;
+// line-height: 10;
+// padding: 250px;
+
+
+// .navbar-header, #logo { /*.navbar-brand*/
+//   // width:30em;
+//   // height:auto;
+//   // color: #000;
+//   // top: 5px;
+//   // left: 30px;
+//   position:relative;
+//   // font-weight:bold;
+//   // font:bold 12px '微软雅黑', Verdana, Arial, Helvetica, sans-serif;
+//   // font-size: 28px;
+
+//   //@include animation(fadeIn 1s 1s 1 forwards);
+//   @include animation(brand_movement 3s 1s 1 cubic-bezier(.63,.14,.38,.91));
+// }
+
+// .navbar-brand, #logo{
+//   position: absolute;
+//   width: 140px;
+//   @include animation(fadeIn 1s 1s 1 forwards, font_ainimate 3s 1s 1 ease-in-out forwards);
+//   // -webkit-animation:
+//   // @include animation(fadeIn 1s 1s 1 forwards);
+//   // @include animation(
+//   //   font_ainimate 3s 1s 1 cubic-bezier(.63,.14,.38,.91)
+//   // );
+// }
