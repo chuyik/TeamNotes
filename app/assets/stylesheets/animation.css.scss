@@ -1,10 +1,14 @@
-@import "compass/css3/transform";
-@import "compass/css3/opacity";
-@import "compass/css3/text-shadow";
+@import "compass/css3/";
 @import "compass-mixin";
 
-/* index hand animation */
-body{overflow:hidden;}
+
+/* animation */
+
+html, body{overflow:hidden;}
+
+body:after{
+  @include animation(zoom_in 3s 5s 1);
+}
 
 .g-hand-left{
   font-size: 130px;
@@ -69,6 +73,11 @@ body{overflow:hidden;}
 
 @include keyframes (typing) { from { width: 0; } }
 @include keyframes (blink-caret) { 50% { border-color: transparent; } }
+
+@include keyframes (zoom_in) {
+  0% { @include transform(scale(3));}
+  100% { @include transform(scale(1));}
+}
 
 @include keyframes(main){
   from {
