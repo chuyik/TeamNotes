@@ -14,6 +14,7 @@
  *= require_self
  *= require_tree .
  */
+@import "mixin";
 @import "bootstrap";
 @import "compass/css3/border-radius";
 
@@ -34,7 +35,7 @@ hr {
 
 html, body {
   /*height: 100%;*/
-  height: 1000px;
+  height: 1200px;
   position: relative;
 }
 
@@ -91,10 +92,9 @@ body:after {
   background-color: #A7CC8E !important;
 }
 
-/* .fix_outer_div{
-  overflow:hidden;
-} */
-
+.navbar-brand{
+  @include addTextShadow(5, 0.8);
+}
 
 /* message css */
 
