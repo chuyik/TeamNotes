@@ -1,0 +1,45 @@
+@import "compass/css3/text-shadow";
+
+/* mixin */
+
+@mixin addTextShadow($blur: 10, $op: 0.2) {
+  &:hover{
+    color: #1F70BB;
+    @include text-shadow(1px 1px $blur*1px rgba(116, 116, 116, $op));
+  }
+}
+
+
+/* mixin for keyframe */
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+$animateOn: true;
+/*$animateOn: false;*/
+
+
+/* @mixin for animation */
+@mixin animation($args...) {
+  @if $animateOn {
+    -webkit-animation: $args;
+    -moz-animation: $args;
+    -o-animation: $args;
+    animation: $args;
+  }
+}
