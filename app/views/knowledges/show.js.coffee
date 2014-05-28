@@ -15,11 +15,11 @@ $(document).on "ajax:success", ".knowledge, #new_comment", (e, data, status, xhr
 		$('#comment_flash').addClass("alert-danger").removeClass("hidden").text("提交评论失败")
 	# success
 	else
-		$('#content_text').html("<%= j(render @knowledge) %>");
-		$('#content_text').css({'left': '5%'}).animate({'left': '0%'}, 200);
+		$('#content_text').html("<%= j(render @knowledge) %>")
+		$('#content_text').css({'left': '5%'}).animate({'left': '0%'}, 200)
 		# $('#content_area').css({'padding': '5% 5%'}).animate({'padding': '0% 15px'}, 200);
 		setTimeout (->
-			$('html, body').height($(document).height())), 500
+			$('html, body').css('overflow', 'visible').height($(document).height())), 800
 		
 		init_wmd()
 		init_knowledge()
