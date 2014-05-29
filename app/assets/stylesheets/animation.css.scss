@@ -6,8 +6,20 @@
 /* index hand animation */
 html, body{overflow:hidden;}
 
-body:after{
-  @include animation(zoom_in 10s 1);
+// body:after{
+//   @include animation(zoom_in 10s 1);
+// }
+
+.list_animate{
+  @include animation(from_right 0.5s 1s 1);
+}
+
+.list_delay_animate{
+  @include animation(from_right 0.5s 10s 1);
+}
+
+.bg_animate{
+  @include animation(zoom_in 9.5s 1);
 }
 
 .hand_animate{
@@ -15,7 +27,7 @@ body:after{
   margin-left: 30px;
   color: #428BCA;
   position: relative;
-  @include animation(rotate_down 3s 5s 1);
+  @include animation(rotate_down 3s 11s 1);
 }
 
 .main_animate{
@@ -52,7 +64,7 @@ body:after{
   font: 100% Consolas, Monaco, monospace;
   border-right: .1em solid;
   width: 7.8em;
-  width: 13ch;
+  width: 14ch;
   white-space: nowrap;
   overflow: hidden;
   color: #999;
@@ -60,7 +72,7 @@ body:after{
   @include addTextShadow;
 
   @include animation(
-    typing 10s 7s steps(13, end),
+    typing 10s 7s steps(14, end),
     blink-caret .5s 7s step-end infinite alternate
   );
 }
@@ -70,6 +82,10 @@ body:after{
 
 @include keyframes (typing) { from { width: 0; } }
 @include keyframes (blink-caret) { 50% { border-color: transparent; } }
+
+@include keyframes (from_right) {
+  0%   { @include transform(translate(50px));}
+}
 
 @include keyframes (zoom_in) {
   0%   { @include transform(scale(2)); @include transform-origin(40%, 5%); }
