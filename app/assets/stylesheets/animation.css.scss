@@ -1,16 +1,16 @@
-@import "compass/css3/";
-@import "compass-mixin";
+@import "compass/css3/transform";
+@import "compass/css3/opacity";
+@import "compass/css3/text-shadow";
+@import "mixin";
 
-
-/* animation */
-
+/* index hand animation */
 html, body{overflow:hidden;}
 
 body:after{
-  @include animation(zoom_in 3s 5s 1);
+  @include animation(zoom_in 10s 1);
 }
 
-.g-hand-left{
+.hand_animate{
   font-size: 130px;
   margin-left: 30px;
   color: #428BCA;
@@ -40,6 +40,7 @@ body:after{
 
 .navbar-collapse_animate{
   position:relative;
+  
   @include animation(fadeIn 4s 3s 1, hide 4s 1);
 }
 
@@ -56,18 +57,14 @@ body:after{
   overflow: hidden;
   color: #999;
   transition: all 0.5s ease-in-out;
+  @include addTextShadow;
 
   @include animation(
     typing 10s 7s steps(13, end),
     blink-caret .5s 7s step-end infinite alternate
   );
-
-  &:hover{
-    // -webkit-animation-play-state: paused;
-    color: #1F70BB;
-    @include text-shadow(1px 1px 10px rgba(116, 116, 116, 0.18));
-  }
 }
+
 
 /* animation definition */
 
@@ -75,11 +72,18 @@ body:after{
 @include keyframes (blink-caret) { 50% { border-color: transparent; } }
 
 @include keyframes (zoom_in) {
-  0% { @include transform(scale(3));}
-  100% { @include transform(scale(1));}
+  0%   { @include transform(scale(2)); @include transform-origin(40%, 5%); }
+  80%  { @include transform(scale(2)); @include transform-origin(40%, 5%); }
 }
 
-@include keyframes(main){
+// @include keyframes (pic_rotate) {
+//   0%   { @include transform(rotate(-180deg));}
+//   15%  { @include transform(rotate(360deg));   }
+//   50%  { @include transform(rotate(180deg)); }
+//   100% { @include transform(rotate(0deg));   }
+// }
+
+@include keyframes(main) {
   from {
       margin-top:70%;
       width:1000px;
@@ -99,7 +103,7 @@ body:after{
   }
 }
 
-@include keyframes(rotate_down){
+@include keyframes(rotate_down) {
   0%    {transform: rotate(0deg);top:0px;}
   20%   {transform: rotate(20deg);top:0px;}
   40%   {transform: rotate(0deg);top:150px;}
@@ -107,26 +111,26 @@ body:after{
   100%  {transform: rotate(-360deg);top:0px;}
 }
 
-@include keyframes(hide){
+@include keyframes(hide) {
    0% {top: -100px;}
    99% {top: -100px;}
   // 95% {top: 50px;}
 }
 
-@include keyframes(fadeIn){
+@include keyframes(fadeIn) {
   0% {@include opacity(0);} 50% {@include opacity(0);} 100% {@include opacity(1);}
 }
 
-@include keyframes(brand_movement){
-  0%     {/*-webkit-transform: scale(1.3); */ top:5%; left:0%; padding: 20%;}
-  50%    {/*-webkit-transform: scale(1); */   top:0%; left:0%; padding: 20%;}
-  90%    {/*-webkit-transform: scale(1); */   top:0%; left:0%; padding: 20%;} 
+@include keyframes(brand_movement) {
+  0%     {top:5%; left:0%; padding: 20%;}
+  50%    {top:0%; left:0%; padding: 20%;}
+  90%    {top:0%; left:0%; padding: 20%;} 
   100%   {} 
 }
 
-@include keyframes(font_ainimate){
-  0%     {/*-webkit-transform: scale(1.3); */ font-size: 500%; @include text-shadow(1px 1px 3px #333)}
-  90%    {/*-webkit-transform: scale(1); */   font-size: 500%; @include text-shadow(1px 1px 3px #333)} 
+@include keyframes(font_ainimate) {
+  0%     {font-size: 500%; @include text-shadow(1px 1px 3px #333) }
+  90%    {font-size: 500%; @include text-shadow(1px 1px 3px #333) } 
   100%   {}
 }
 
