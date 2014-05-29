@@ -18,7 +18,7 @@ $(document).on "ajax:success", ".knowledge, #new_comment", (e, data, status, xhr
 		$('#content_text').html("<%= j(render @knowledge) %>")
 		$('#content_text').css({'left': '5%'}).animate({'left': '0%'}, 200)
 
-		log($(document).height())
+		log("document height: " + $(document).height())
 		setTimeout (->
 			$('html, body').css('overflow', 'visible').height($(document).height())), 800
 		# $('#content_area').css({'padding': '5% 5%'}).animate({'padding': '0% 15px'}, 200);
