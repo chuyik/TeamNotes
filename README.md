@@ -15,7 +15,8 @@ Rails version: 4.1
 ##Installation##
   ```
   bundle install
-  bundle exec rake db:reset
+  bundle exec rake db:create
+  bundle exec rake db:migrate
   ```
 
 ##Test##
