@@ -17,13 +17,14 @@
 @import "mixin";
 @import "bootstrap";
 @import "compass/css3/border-radius";
+@import "compass/css3/opacity";
 
 /* reset css */
 
-a:link {color: #000; text-decoration: none; } 
-a:visited {color: #000; text-decoration: none; }
-a:hover {color: #000; text-decoration: none; } 
-a:active {color: #000; text-decoration: none; }
+a:link {text-decoration: none; } 
+a:visited {text-decoration: none; }
+a:hover {text-decoration: none; } 
+a:active {text-decoration: none; }
 
 a, button, input{transition: all 0.3s ease-in-out}
 
@@ -42,23 +43,37 @@ html, body {
 }
 
 body.no-after:after{
+  content : "";
   -webkit-animation-play-state: paused;
 }
 
-body:after {
-  content : "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: image-url("/images/g3.png") center center fixed;
-
-  background-size: 100% auto;
-  width: 100%;
-  height: 100%;
-  opacity : 0.1;
-  z-index: -1;
+#background {
+    background: url("/images/g3.png") center center fixed;
+    position: absolute;
+    background-size: 100% auto;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include opacity(0.2);
+    z-index: -1;
 }
+
+// body:after {
+//   content : "";
+//   display: block;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   background: image-url("/images/g3.png") center center fixed;
+
+//   background-size: 100% auto;
+//   width: 100%;
+//   height: 100%;
+//   opacity : 0.1;
+//   z-index: -1;
+// }
 
 .center {
   width: auto;
@@ -89,12 +104,13 @@ body:after {
   @extend .has-error;
 }
 
-.nav a:hover{
+.list-group-item:nth-last-child(1):hover, .nav a:hover{
   color: #FFF !important;
   background-color: #A7CC8E !important;
 }
 
 .navbar-brand{
+  position: relative;
   @include addTextShadow(5, 0.8);
 }
 
