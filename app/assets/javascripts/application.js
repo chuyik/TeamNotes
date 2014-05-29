@@ -17,27 +17,26 @@
 //= require bootstrap
 //= require jquery.scrollTo
 //= require jquery.equalheights.min
+//= require jquery.cookie.js
 //
 //= require_tree .
 //
 
 $(function(){
-	if(window.location.pathname != '/'){
-		$('[class$="animate"]').each(function(){
-			$(this).removeClass(function(i, c){
-				log(c);
-				var s = /^.+\s+(.+_animate)\b$/.exec(c);
-				if(s === null)
-				  return c
-				else
-				  return s[1]
-				// log("result: ", /^.+\b(.+_animate)\b$/.exec(c));
-			});
-			log('class after filtered: ' + $(this).attr('class'));
-		});
+
+	/* remove all animations if condition */
+	if($.cookie('isAnimated')){
+		// $('body').addClass('no-after');
+	}else{
+		startAnimate();
 	}
+	$.cookie('isAnimated', true, { expires: 1 });
+
+	/* light up the clicked nav button */
 	$('a[href="'+window.location.pathname+'"]').parent().addClass('active');
 
+
+	/* scroll page when click gotop and gobottom button */
 	$(window).scroll(function(){
 		$("#gobottom").fadeIn(400);
 		var scrollt = document.documentElement.scrollTop + document.body.scrollTop;
@@ -54,16 +53,44 @@ $(function(){
 		$(window).scrollTo($('#comment_form').length === 0 ? 'max' : $('#comment_form'), 200);
 	});
 
-	$('.navbar-brand').css('position', 'relative');
 
+	/* handle sth after animation */
+	$('.navbar-brand').css('position', 'relative');
 	$('.navbar-toggle').click(function(){
 		$('.navbar-collapse').removeClass('navbar-collapse_tmp');
 	});
-
 	setTimeout(function(){
 		$('body').css('overflow', 'auto');
 	}, 5000);
 });
+
+var _c = 0;
+$('#play_btn').click(function(){
+	if(_c == 0){
+		startAnimate();
+		_c++;
+	}else{
+		var _o = {};
+		$('[class$="animate"]').each(function(i, o){
+			var _s = /^.+\s+(.+_animate)\b$/.exec($(o).attr('class'));
+			_c = (_s === null) ? $(o).attr('class') : _s[1];
+			_o[_c] = this;
+			$(o).removeClass(_c);
+		});
+		setTimeout(function(){
+			for(var k in _o){
+				$(_o[k]).addClass(k);
+			}
+		}, 10);
+	}
+	return false;
+});
+
+function startAnimate(){
+	$('[class$="animate"]').each(function(){
+		$(this).removeClass('stop-animate');
+	});
+}
 
 function log(){
 	if(console && console.log){
