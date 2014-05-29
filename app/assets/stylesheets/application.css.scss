@@ -37,6 +37,10 @@ html, body {
 }
 
 /* common css */
+#logo {
+  z-index:  -1;
+}
+
 body.no-after:after{
   -webkit-animation-play-state: paused;
 }
