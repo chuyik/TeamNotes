@@ -37,14 +37,13 @@
   </head>
 
   <body>
-    <div id="logo" class="logo_animate">G3 团队日志</div>
-    <!-- <a id="logo" href="/">G3 TEAM NOTES</a> -->
+    <div id="logo" class="logo_animate stop-animate">G3 团队日志</div>
     <a id="gotop" class="goto"> <span>▲</span></a>
     <a id="gobottom" class="goto"> <span>▼</span></a>
 
   <!-- Fixed navbar -->
   <div id="wrap">
-    <div class="navbar navbar-default navbar-fixed-top navbar_animate" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top navbar_animate stop-animate" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -55,19 +54,19 @@
           </button>
           <a class="navbar-brand" href="/" style="z-index: 1;">G3 团队日志</a>
         </div>
-        <div class="navbar-collapse collapse navbar-collapse_animate">
+        <div class="navbar-collapse collapse navbar-collapse_animate stop-animate">
           <ul class="nav navbar-nav">
             <li><a href="/knowledges">知识</a></li>
             <li><a href="/about">关于</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-           <!--  <li><a href="../navbar/">Login</a></li> -->
+            <li><a id="play_btn" href="/#play">打开动画</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-    <div id="main" class="container main_animate">
+    <div id="main" class="container main_animate stop-animate">
       
       <div class="flash">
         <% flash.each do |key, value| %>
