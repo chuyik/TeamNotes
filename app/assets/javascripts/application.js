@@ -21,13 +21,13 @@
 //
 //= require_tree .
 //
-
 $(function(){
-
 	/* remove all animations if condition */
 	if($.cookie('isAnimated')){
-		// $('body').addClass('no-after');
+		/* add some animation to list-item */
+		// addAnimationToList('list_animate');
 	}else{
+		addAnimationToList('list_delay_animate');
 		startAnimate();
 	}
 	$.cookie('isAnimated', true, { expires: 1 });
@@ -55,25 +55,31 @@ $(function(){
 
 
 	/* handle sth after animation */
-	$('.navbar-brand').css('position', 'relative');
+	// $('.navbar-brand').css('position', 'relative');
 	$('.navbar-toggle').click(function(){
 		$('.navbar-collapse').removeClass('navbar-collapse_tmp');
 	});
-	setTimeout(function(){
-		$('body').css('overflow', 'auto');
-	}, 5000);
+	// setTimeout(function(){
+	// 	$('body').css('overflow', 'auto');
+	// }, 5000);
 });
 
-var _c = 0;
 $('#play_btn').click(function(){
-	if(_c == 0){
+	restartAnimate();
+});
+
+var a_i = 0;
+function restartAnimate(){
+	$('html, body').css('overflow', 'hidden');
+	if(a_i == 0){
 		startAnimate();
-		_c++;
+		a_i++;
 	}else{
 		var _o = {};
 		$('[class$="animate"]').each(function(i, o){
 			var _s = /^.+\s+(.+_animate)\b$/.exec($(o).attr('class'));
 			_c = (_s === null) ? $(o).attr('class') : _s[1];
+			log("className: " + _c);
 			_o[_c] = this;
 			$(o).removeClass(_c);
 		});
@@ -84,12 +90,20 @@ $('#play_btn').click(function(){
 		}, 10);
 	}
 	return false;
-});
+}
 
 function startAnimate(){
 	$('[class$="animate"]').each(function(){
 		$(this).removeClass('stop-animate');
 	});
+}
+
+function addAnimationToList(className){
+	$('.list-group-item:not(:last)').each(function(i, e){
+		setTimeout(function(){
+			$(e).addClass(className);
+		}, 100 * i);
+	});		
 }
 
 function log(){
