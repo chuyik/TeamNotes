@@ -1,4 +1,5 @@
-=======
+[![Code Climate](https://codeclimate.com/github/chuyik/TeamNotes.png)](https://codeclimate.com/github/chuyik/TeamNotes)
+
 TeamNotes
 =========
 
