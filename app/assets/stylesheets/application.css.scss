@@ -21,6 +21,8 @@
 
 /* reset css */
 
+html, body{overflow:hidden;}
+
 a:link {text-decoration: none; } 
 a:visited {text-decoration: none; }
 a:hover {text-decoration: none; } 
@@ -32,8 +34,12 @@ hr {
   border-top: 1px solid #9B9B9B;
 }
 
+// html, body, #background {
+//   height: 2000px;
+//   // position: relative;
+// }
 html, body {
-  height: 1200px;
+  height: 1400px;
   position: relative;
 }
 
@@ -42,10 +48,10 @@ html, body {
   z-index:  -1;
 }
 
-body.no-after:after{
-  content : "";
-  -webkit-animation-play-state: paused;
-}
+// body.no-after:after{
+//   content : "";
+//   -webkit-animation-play-state: paused;
+// }
 
 #background {
     background: url("/images/g3.png") center center fixed;
