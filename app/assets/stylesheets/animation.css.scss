@@ -3,8 +3,7 @@
 @import "compass/css3/text-shadow";
 @import "mixin";
 
-/* index hand animation */
-html, body{overflow:hidden;}
+/* animation */
 
 // body:after{
 //   @include animation(zoom_in 10s 1);
@@ -88,8 +87,8 @@ html, body{overflow:hidden;}
 }
 
 @include keyframes (zoom_in) {
-  0%   { @include transform(scale(2)); @include transform-origin(40%, 5%); }
-  80%  { @include transform(scale(2)); @include transform-origin(40%, 5%); }
+  0%   { @include transform(scale(2)); @include transform-origin(40%, 5%);-webkit-backface-visibility: hidden; }
+  80%  { @include transform(scale(2)); @include transform-origin(40%, 5%);-webkit-backface-visibility: hidden; }
 }
 
 // @include keyframes (pic_rotate) {
@@ -120,11 +119,11 @@ html, body{overflow:hidden;}
 }
 
 @include keyframes(rotate_down) {
-  0%    {transform: rotate(0deg);top:0px;}
-  20%   {transform: rotate(20deg);top:0px;}
-  40%   {transform: rotate(0deg);top:150px;}
-  70%   {transform: rotate(0deg);top:150px;}
-  100%  {transform: rotate(-360deg);top:0px;}
+  0%    { @include transform(rotate(0deg)); top:0px; }
+  20%   { @include transform(rotate(20deg)); top:0px; }
+  40%   { @include transform(rotate(0deg)); top:150px; }
+  70%   { @include transform(rotate(0deg)); top:150px; }
+  100%  { @include transform(rotate(-360deg)); top:0px; }
 }
 
 @include keyframes(hide) {
