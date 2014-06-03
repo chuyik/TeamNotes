@@ -4,6 +4,8 @@ lightUpComment = ->
 		color = $(@).css('background-color')
 		$(@).css({'background-color':'#F8EEDD'}).animate({'background-color':'#DDF8DD'}, 500).animate({'background-color':color}, 600)
 
+$(document).on "ajax:error", ".knowledge", (e, data, status, xhr) ->
+	log(e)
 
 $(document).off "ajax:success", ".knowledge, #new_comment"
 $(document).on "ajax:success", ".knowledge, #new_comment", (e, data, status, xhr) ->
@@ -19,6 +21,8 @@ $(document).on "ajax:success", ".knowledge, #new_comment", (e, data, status, xhr
 		$('#content_text').css({'left': '5%'}).animate({'left': '0%'}, 200)
 
 		log("document height: " + $(document).height())
+		# setTimeout (->
+		# 	$('html, body, #background').height($(document).height())), 500
 		setTimeout (->
 			$('html, body').css('overflow', 'visible').height($(document).height())), 800
 		# $('#content_area').css({'padding': '5% 5%'}).animate({'padding': '0% 15px'}, 200);
