@@ -17,6 +17,12 @@ $().ready ->
 	$('#new_knowledge').submit (e) ->
 		$(this).find('#knowledge_content').val($('#notes').val())
 
+if(window.location.pathname == '/')
+    $('html, body').css('overflow', 'hidden')
+else
+    $('html, body').css('overflow', 'auto')
+
+
 # $('.knowledge').click ->
 # 	o = @
 # 	$('.knowledge').each ->
