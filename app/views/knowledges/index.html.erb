@@ -4,8 +4,8 @@
 			<div class="panel-heading">知识列表<span class="pull-right badge"><%=@knowledges.size %></span></div>
 			<div class="list-group">
 				<% @knowledges.each_with_index do |knowledge, i| %>
-					<%= link_to knowledge_path(knowledge), remote:true, class:"knowledge list_animate stop-animate list-group-item #{'active' if i==0}" do %>
-						<span><%= knowledge.title %></span>
+					<%= link_to knowledge_path(knowledge), remote:true, class:"knowledge list-group-item #{'active' if i==0}" do %>
+						<div><%= knowledge.title %></div>
 						<small class="text-warning">(<%= knowledge.author.blank? ? '匿名' : knowledge.author %>)</small>
 						<small class="pull-right"><%= knowledge.created_at.localtime.strftime("%m-%d") %></small>
 					<% end %>
@@ -14,7 +14,7 @@
 				<% if @knowledges.size == 0 %>
 					<span class="list-group-item center">无新日志</span>
 				<% end %>
-				<a href="/knowledges/new" class="list-group-item list_animate stop-animate text-center small">新建日志</a>
+				<a href="/knowledges/new" class="list-group-item text-center small">新建日志</a>
 			</div>
 		</div>
 	</div>
