@@ -18,23 +18,16 @@
 //= require jquery.scrollTo
 //= require jquery.equalheights.min
 //= require jquery.cookie.js
+//= require showalert
 //
+//= require_self
 //= require_tree .
 //
 $(function(){
-	/* remove all animations if condition */
-	if($.cookie('isAnimated')){
-		/* add some animation to list-item */
-		// addAnimationToList('list_animate');
-	}else{
-		addAnimationToList('list_delay_animate');
-		startAnimate();
-	}
-	$.cookie('isAnimated', true, { expires: 1 });
+	log('app.js');
 
 	/* light up the clicked nav button */
 	$('a[href="'+window.location.pathname+'"]').parent().addClass('active');
-
 
 	/* scroll page when click gotop and gobottom button */
 	$(window).scroll(function(){
@@ -53,6 +46,49 @@ $(function(){
 		$(window).scrollTo($('#comment_form').length === 0 ? 'max' : $('#comment_form'), 200);
 	});
 
+	$('#play_btn').click(function(){
+		// restartAnimate();
+		$.removeCookie('isAnimated');
+		log($.cookie('isAnimated'));
+		window.location.reload();
+	});
+
+	// tricks for animation
+	handleAnimation();
+});
+
+
+function handleAnimation(){
+	/* remove all animations if condition */
+	if($.cookie('isAnimated')){
+		/* add some animation to list-item */
+		// addAnimationToList('list_animate');
+	}else{
+		addAnimationToList('list_delay_animate');
+		startAnimate();
+	}
+	$.cookie('isAnimated', true); //, { expires: 1 }
+
+	/* if animation has played, reload the page before open knowledge */
+	if(isWebKit()){
+		$(document).off("ajax:beforeSend", ".knowledge");
+		$(document).on("ajax:beforeSend", ".knowledge", function(e, data, status, xhr) {
+			if($.cookie('isAnimated') && !$.cookie('kl_reloaded')){
+				$.cookie('kl_reloaded', true);
+				$.cookie('kl_reloaded_href', $(this).attr('href'));
+				window.location.reload();
+				return false;
+			}
+		});
+
+		if($.cookie('kl_reloaded') && $.cookie('kl_reloaded_href')){
+			log("已经重读!");
+			showAlert.success('页面刷新了一遍！原因是Webkit的CSS3的动画播放后，更改页面大小会导致背景无法锁定。经测试，FF24表现完美。');
+			log('.knowledge[href="'+$.cookie('kl_reloaded_href')+'"]');
+			$('.knowledge[href="'+$.cookie('kl_reloaded_href')+'"]').click();
+			$.removeCookie('kl_reloaded_href');
+		}
+	}
 
 	/* handle sth after animation */
 	// $('.navbar-brand').css('position', 'relative');
@@ -62,11 +98,8 @@ $(function(){
 	// setTimeout(function(){
 	// 	$('body').css('overflow', 'auto');
 	// }, 5000);
-});
+}
 
-$('#play_btn').click(function(){
-	restartAnimate();
-});
 
 var a_i = 0;
 function restartAnimate(){
@@ -93,6 +126,8 @@ function restartAnimate(){
 }
 
 function startAnimate(){
+	log('startAnimate');
+	$.removeCookie('kl_reloaded');
 	$('[class$="animate"]').each(function(){
 		$(this).removeClass('stop-animate');
 	});
@@ -106,8 +141,12 @@ function addAnimationToList(className){
 	});		
 }
 
+function isWebKit(){
+	return /webkit/.test(navigator.userAgent.toLowerCase());
+}
+
 function log(){
-	if(console && console.log){
+	if(typeof console != undefined && console.log){
 		console.log(arguments);
 	}
 }
