@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/chuyik/TeamNotes.png)](https://codeclimate.com/github/chuyik/TeamNotes)
+[![Codeship Status for chuyik/TeamNotes](https://codeship.io/projects/24461a80-f156-0131-4a7b-3a92238427f2/status)](https://codeship.io/projects/27582)
 
 TeamNotes
 =========
