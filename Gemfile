@@ -1,5 +1,5 @@
-source 'http://ruby.taobao.org/'
-# source 'http://rubygems.org'
+# source 'http://ruby.taobao.org/'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -10,6 +10,14 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 
 gem 'compass-rails', "~> 1.1.2"
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
 
 gem 'normalize-rails'
 # group :assets do
