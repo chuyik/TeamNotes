@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.effect-blind
+//=# require jquery.ui.effect-blind
+//= require jquery-ui/effect-blind
 //=# require turbolinks
 //= require bootstrap
 //= require jquery.scrollTo
@@ -35,8 +36,8 @@ $(function(){
 		var scrollt = document.documentElement.scrollTop + document.body.scrollTop;
 		if( scrollt >200 ){
 			$("#gotop").fadeIn(400);
-		}else{      
-			$("#gotop").stop().fadeOut(400);  
+		}else{
+			$("#gotop").stop().fadeOut(400);
 		}
 	});
 	$("#gotop").click(function(){
@@ -138,7 +139,7 @@ function addAnimationToList(className){
 		setTimeout(function(){
 			$(e).addClass(className);
 		}, 100 * i);
-	});		
+	});
 }
 
 function isWebKit(){
